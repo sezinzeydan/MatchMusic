@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="text-center">
+            <br/>
+            <br/>
+            <br/>
+            <img src="~/image/music.png" width="200" height="200"/>
+        </div>
+    </div>
+    <div class="col-md-8">
+        <div class="jumbotron">
+            <h1>Match Music</h1>
+            <p class="lead">Match Music is a free Web site that allows you to match your music taste with your friends.</p>
+            <p>Interested? Log in with Spotify to explore!</p>
+            <p>@Html.ActionLink("Log in", "Login", "Home", null, new { @class = "btn btn-success" })</p>
+        </div>
+    </div>
+</div>
+
+<div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
+

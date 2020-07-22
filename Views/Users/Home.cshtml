@@ -1,0 +1,96 @@
+﻿@model MatchMusic.Models.User
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<style>
+    input[type=text] {
+        width: 80%;
+        padding: 15px 22px;
+        margin: 10px 5px;
+        box-sizing: border-box;
+        font-size: 25px;
+        background: lightgrey;
+    }
+
+    btn btn-success {
+        border: 10px solid #073642;
+    }
+
+</style>
+<h2>Welcome @Html.DisplayFor(model => model.UserName)</h2>
+<div class="jumbotron">
+<div class="row">
+        <div class="col-md-4">
+            <img width="250" height="250" src="@Html.DisplayFor(model => model.UserProfilePicture)">
+        </div>
+        <div class="col-md-8">
+            <h2> Share your code with friends and start matching!</h2>
+            <input type="text" name="code" value="@Html.DisplayFor(model => model.UserCode)" readonly>
+        </div>
+    </div>
+
+    <hr />
+    <div class="row">
+        <h2><strong>Enter a Code</strong></h2>
+        
+        @if (ViewBag.MyString != null)
+        {
+            <div class ="col-md-3">
+                <p> Code you entered was invalid. Please try again.</p>
+            </div>
+        }
+        <hr />
+
+       
+        <div class="input-group md-form form-sm form-2 pl-0">
+            <form method="post" action="@Url.Action("Match", "Matches")">
+                <input class="form-control my-0 py-1" placeholder="Enter a Code" aria-label="Enter a Code" name="userCode">
+            </form>
+            <div class="input-group-append">
+                <span class="input-group-text" id="basic-text1">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+            </div>
+        </div>
+
+    </div>
+
+    <hr/>
+    <h2><strong>Matches</strong></h2>
+    <hr/>
+    @if (Model.MatchedUsers.ToList().Count() != 0)
+    {
+        var matches = Model.MatchedUsers.OrderBy(a => a.MatchId).ToList();
+        for (int i = 0; i < matches.Count(); i++)
+        {
+            <form method="post" action ="@Url.Action("ShowPreviousMatch", "Matches", new {Id = @matches[i].Match.MatchId.ToString()})">
+                <div class="row">
+                    <button class="btn btn-success" type ="submit" name ="matchId"><i class="fa fa-angle-right" aria-hidden="true" ></i>
+                        @matches[i].Match.MatchName in @matches[i].Match.MatchDate.Date.ToString("dd / MM / yyyy") match rate is %@matches[i].Match.MatchRate </button>
+                    <br/>
+                    <br/>
+                    <br/>
+                </div>
+            </form>
+            <div class="row">
+                <br/>
+            </div>
+            
+        }
+        
+    }
+    
+    <hr/>
+    <div class="row">
+        <form method="get" action="@Url.Action("Delete", "Users", new {id = Model.UserId})">
+            <button class="btn btn-danger" type="submit">Delete Account</button> 
+        </form>
+    </div>
+
+</div>
+
+    
+    

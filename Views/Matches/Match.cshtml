@@ -1,0 +1,64 @@
+﻿@model MatchMusic.Models.Match
+
+@{
+    ViewData["Title"] = "View";
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+<style>
+    .jumbotron {
+        background: #2AA198;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border: 10px solid #002B36;
+        color : whitesmoke
+    }
+    .col-md-3{
+        padding-left: 35px;
+        padding-right: 35px;
+        padding-top: 35px;
+        padding-bottom: 35px;
+    }
+</style>
+
+<h1>Matched!</h1>
+<div class="row align-content-center">
+    <div class="col-md-4"  >
+        <img width="200" height="200" src=@ViewBag.CurrUserPic />
+        <h3><strong>@ViewBag.CurrUserName</strong></h3>
+    </div>
+    <div class="col-md-4 align-content-center">
+        <img width="200" height="200" src=@ViewBag.SecUserPic />
+        <h3><strong>@ViewBag.SecUserName</strong></h3>
+    </div>
+</div>
+<hr />
+<div class="row align-self-md-auto" style="background: #073642" >
+    <h2>Your match compability with @ViewBag.SecUsername is %@Model.MatchRate</h2>
+</div>
+<hr/>
+<h2><strong>Top favorite tracks</strong></h2>
+<hr/>
+<div class="row">
+    @foreach (var track in Model.MatchedTracks)
+    {
+        <div class="jumbotron col-md-4">
+            <img width="100" height="100" src=@track.Track.TrackAlbumPicture />
+            @track.Track.TrackName;
+        </div>
+    }
+</div>
+
+<hr />
+<h2><strong>Top favorite artists</strong></h2>
+
+<div class="row">
+    @foreach (var artist in Model.MatchedArtists)
+    {
+        <div class="jumbotron col-md-4">
+            <img width="100" height="100" src=@artist.Artist.ArtistPicture />
+            @artist.Artist.ArtistName;
+        </div>
+    }
+</div>

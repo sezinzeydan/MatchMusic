@@ -59,8 +59,8 @@ namespace MatchMusic
                 })
                 .AddSpotify(options =>
                 {
-                    options.ClientId = Configuration["7fcc80bdd4c842d4b588c1f2398a47bf"];
-                    options.ClientSecret = Configuration["aedd08ded37f4974bffed3cef08cf11d"];
+                    options.ClientId = Configuration["**"];
+                    options.ClientSecret = Configuration["**"];
                     options.SaveTokens = true;
 
                     var scopes = new List<string>
